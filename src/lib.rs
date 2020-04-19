@@ -2,7 +2,7 @@ extern crate proc_macro;
 
 use proc_macro::TokenStream;
 use quote::{quote, quote_spanned};
-use syn::{parse_macro_input, Lit, spanned::Spanned};
+use syn::{parse_macro_input, Lit, Expr, spanned::Spanned};
 
 fn lit_to_bytes(lit: &Lit) -> Option<Vec<u8>> {
     match lit {
@@ -18,11 +18,22 @@ fn lit_to_bytes(lit: &Lit) -> Option<Vec<u8>> {
     }
 }
 
+fn expr_to_bytes(expr: &Expr) -> Option<Vec<u8>> {
+    match expr {
+        Expr::Lit(lit) => lit_to_bytes(&lit.lit),
+        Expr::Path(path) => {
+            let ident = path.path.get_ident()?;
+            Some(Vec::from(ident.to_string().as_bytes()))
+        }
+        _ => None
+    }
+}
+
 #[proc_macro]
 pub fn lua_bind_hash(input: TokenStream) -> TokenStream {
-    let expr = parse_macro_input!(input as Lit);
+    let expr = parse_macro_input!(input as Expr);
 
-    match lit_to_bytes(&expr) {
+    match expr_to_bytes(&expr) {
         Some(string) => {
             let lua_bind_hash = lua_bind_hash::lua_bind_hash(&string);
             
@@ -37,5 +48,4 @@ pub fn lua_bind_hash(input: TokenStream) -> TokenStream {
             })
         }
     }
-    
 }
