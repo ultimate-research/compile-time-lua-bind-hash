@@ -5,22 +5,15 @@ name = "compile-time-lua-bind-hash-impl"
 version = "0.1.0"
 dependencies = [
  "lua_bind_hash",
- "proc-macro-hack",
  "quote",
  "syn",
 ]
 
 [[package]]
 name = "lua_bind_hash"
-version = "1.0.0"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "53740bfd4433a520af4a9bbd58faea1bb99e648fb1508b8f57b90eeaccb1f8ab"
-
-[[package]]
-name = "proc-macro-hack"
-version = "0.5.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0d659fe7c6d27f25e9d80a1a094c223f5246f6a6596453e09d7229bf42750b63"
+checksum = "ee9675fd198b39d86a7d5d20c59ae9639a3b4157f28ebd6cc09b9f1397ab118a"
 
 [[package]]
 name = "proc-macro2"

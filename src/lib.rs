@@ -1,7 +1,6 @@
 extern crate proc_macro;
 
 use proc_macro::TokenStream;
-use proc_macro_hack::proc_macro_hack;
 use quote::{quote, quote_spanned};
 use syn::{parse_macro_input, Lit, spanned::Spanned};
 
@@ -19,7 +18,7 @@ fn lit_to_bytes(lit: &Lit) -> Option<Vec<u8>> {
     }
 }
 
-#[proc_macro_hack]
+#[proc_macro]
 pub fn lua_bind_hash(input: TokenStream) -> TokenStream {
     let expr = parse_macro_input!(input as Lit);
 
