@@ -1,8 +1,10 @@
 [package]
 name = "compile-time-lua-bind-hash"
-version = "0.1.0"
-authors = ["jugeeya <jugeeya@live.com>"]
+version = "1.0.0"
+authors = ["jugeeya <jugeeya@live.com>", "jam1garner <jam1.mcleod@hotmail.com"]
 edition = "2018"
+description = "A crate for doing compile-time hashing of lua constants"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -12,4 +14,4 @@ proc-macro = true
 [dependencies]
 syn = "^1.0"
 quote = "^1.0"
-lua_bind_hash = "1.0.1"
+lua_bind_hash = "1"
