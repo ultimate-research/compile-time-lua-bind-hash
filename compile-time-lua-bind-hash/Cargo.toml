@@ -1,0 +1,11 @@
+[package]
+name = "compile-time-lua-bind-hash"
+version = "0.1.0"
+authors = ["jugeeya <jugeeya@live.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+proc-macro-hack = "0.5.11"
+compile-time-lua-bind-hash-impl = { path = ".." }
