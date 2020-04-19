@@ -25,12 +25,23 @@ fn expr_to_bytes(expr: &Expr) -> Option<Vec<u8>> {
             let ident = path.path.get_ident()?;
             Some(Vec::from(ident.to_string().as_bytes()))
         }
+        Expr::Group(group) => {
+            expr_to_bytes(&group.expr)
+        }
         _ => None
     }
 }
 
+use std::sync::atomic::{AtomicBool, Ordering};
+
+static EXIT: AtomicBool = AtomicBool::new(false);
+
 #[proc_macro]
 pub fn lua_bind_hash(input: TokenStream) -> TokenStream {
+    if EXIT.load(Ordering::SeqCst) {
+        return quote!{}.into();
+    }
+
     let expr = parse_macro_input!(input as Expr);
 
     match expr_to_bytes(&expr) {
@@ -43,8 +54,10 @@ pub fn lua_bind_hash(input: TokenStream) -> TokenStream {
         }
         None => {
             let span = expr.span();
+            EXIT.store(true, Ordering::SeqCst);
+            panic!("Invalid input: '{:?}'", expr);
             TokenStream::from(quote_spanned!{span =>
-                compile_error!("Invalid literal");
+                compile_error!("Invalid input");
             })
         }
     }

@@ -1,6 +1,6 @@
 [package]
 name = "compile-time-lua-bind-hash"
-version = "1.1.0"
+version = "1.1.1"
 authors = ["jugeeya <jugeeya@live.com>", "jam1garner <jam1.mcleod@hotmail.com"]
 edition = "2018"
 description = "A crate for doing compile-time hashing of lua constants"
@@ -12,6 +12,6 @@ license = "MIT"
 proc-macro = true
 
 [dependencies]
-syn = "^1.0"
+syn = { version ="^1.0", features = ["extra-traits", "full"] }
 quote = "^1.0"
 lua_bind_hash = "1.0.1"

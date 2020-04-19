@@ -2,7 +2,7 @@
 # It is not intended for manual editing.
 [[package]]
 name = "compile-time-lua-bind-hash"
-version = "1.0.1"
+version = "1.1.0"
 dependencies = [
  "lua_bind_hash",
  "quote",
