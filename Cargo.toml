@@ -1,6 +1,6 @@
 [package]
 name = "compile-time-lua-bind-hash"
-version = "1.0.1"
+version = "1.1.0"
 authors = ["jugeeya <jugeeya@live.com>", "jam1garner <jam1.mcleod@hotmail.com"]
 edition = "2018"
 description = "A crate for doing compile-time hashing of lua constants"
